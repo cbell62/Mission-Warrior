@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const ANIM_FLOOR = 0
+const ANIM_FLOOR = 1
 const ANIM_AIR_UP = 1
 const ANIM_AIR_DOWN = 2
 
