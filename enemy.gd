@@ -10,7 +10,7 @@ var max_speed = 2
 var rot_dir = 4
 var rot_speed = 1
 
-var dying = false
+var killed = false
 
 onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
@@ -25,7 +25,7 @@ func _integrate_forces(state):
 	lv += g * delta # Apply gravity.
 	var up = -g.normalized()
 	
-	if dying:
+	if killed:
 		state.set_linear_velocity(lv)
 		return
 	
@@ -36,7 +36,7 @@ func _integrate_forces(state):
 		if cc:
 			if cc is preload("res://bullet.gd") and cc.enabled:
 				set_mode(MODE_RIGID)
-				dying = true
+				killed = true
 				state.set_angular_velocity(-dp.cross(up).normalized() * 33.0)
 				get_node("AnimationPlayer").play("impact")
 				get_node("AnimationPlayer").queue("explode")
